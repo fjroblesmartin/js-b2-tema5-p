@@ -44,7 +44,7 @@ export class InventoryManager {
         const isNameValid = typeof product.name === 'string' && product.name.trim().length > 0;
         
         // Validación de precio: Número positivo y máximo 2 decimales
-        // Truco para decimales: multiplicar por 100 y ver si es entero para saber si tiene más de 2 decimales
+        // Multiplicamos por 100 y vemos si es entero para saber si tiene más de 2 decimales
         const isPriceValid = typeof product.price === 'number' && product.price > 0 && (Math.round(product.price * 100) / 100 === product.price);
 
         if (!isCodeValid || !isDiscountTypeValid || !isAmountTypeValid || !isNameValid || !isPriceValid) {
@@ -74,8 +74,6 @@ export class InventoryManager {
         }
 
         // 6. Validación: Cantidad negativa
-        // NOTA: El enunciado tiene una errata (dice "inferior a 10" en un bloque y "negativa" en otro).
-        // Nos guiamos por la regla lógica "No puede tener una cantidad negativa" y el ejemplo final.
         if (product.amount < 0) {
             throw new Error(`INVENTORY_AMOUNT. La cantidad de producto (${product.code}) no puede ser negativa.`);
         }
